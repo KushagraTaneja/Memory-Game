@@ -23,6 +23,12 @@ function shuffle(array) {
     "fa-leaf","fa-bicycle","fa-bomb"];
     let shuffledCards = shuffle(cardTypes);
     let cardElements = document.querySelectorAll('.deck li i');
+    let starElements = document.querySelectorAll('.stars li i');
+            starElements[0].className = "fa fa-star";
+            starElements[1].className = "fa fa-star";
+            starElements[2].className = "fa fa-star";  
+    document.getElementById("moves").innerText = 0;
+    
      for (let i=0;i<=15;i++){
         cardElements[i].className = "fa " + shuffledCards[i];
      }
@@ -40,13 +46,30 @@ function shuffle(array) {
                 clickedElement.classList.add('open');
         }}       
        if (openedCard.length==2) {
-        let noOfMoves = parseInt(document.getElementById("moves").innerText, 10);
-        noOfMoves += 1;           
-        document.getElementById("moves").innerText = noOfMoves;
+        moves();
         match();   
        } 
      });
     });
+
+    function moves() {
+        let noOfMoves = parseInt(document.getElementById("moves").innerText, 10);
+        noOfMoves += 1;           
+        document.getElementById("moves").innerText = noOfMoves;
+        let starElements = document.querySelectorAll('.stars li i');
+        if (noOfMoves == 8) {
+                starElements[0].className = "fa fa-star";
+                starElements[1].className = "fa fa-star";
+                starElements[2].className = "fa";            
+        }
+        else if (noOfMoves == 14) {
+            starElements[0].className = "fa fa-star";
+            starElements[1].className = "fa";
+            starElements[2].className = "fa";
+        }
+    }
+
+  
 
    function match(){
     let [openedCard1,openedCard2] = document.getElementsByClassName("open");
@@ -60,7 +83,6 @@ function shuffle(array) {
                 openedCard1.classList.remove('misMatch');
                 openedCard2.classList.remove('misMatch');
                     },1000)
-                
             }
         }   
 
