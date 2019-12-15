@@ -35,6 +35,7 @@ function shuffle(array) {
      allCards.forEach(function(card){
         card.className = "card";
     })
+    startTimer();
     });
 
  allCards.forEach(function(element){
@@ -69,8 +70,6 @@ function shuffle(array) {
         }
     }
 
-  
-
    function match(){
     let [openedCard1,openedCard2] = document.getElementsByClassName("open");
         if ((openedCard1.childNodes[1].classList[1])==(openedCard2.childNodes[1].classList[1])) {
@@ -86,4 +85,36 @@ function shuffle(array) {
             }
         }   
 
-``
+
+        // function timer(){ 
+
+        let minutesLabel = document.getElementById("minutes");
+        let secondsLabel = document.getElementById("seconds");
+        let totalSeconds = 0;
+        // let stopTimer = setInterval(setTime, 1000);
+
+        function startTimer(){
+            setInterval(setTime, 1000);
+        }
+
+        function setTime(){
+            ++totalSeconds;
+            secondsLabel.innerHTML = pad(totalSeconds%60);
+            minutesLabel.innerHTML = pad(parseInt(totalSeconds/60));
+        }
+
+        function pad(sec){
+            let secString = sec + "";
+            if(secString.length < 2){
+                return "0" + secString;
+            }
+            else {
+                return secString;
+            }
+        }
+
+        function stoppingTimer(){
+            clearInterval(stopTimer);
+        }
+    
+    

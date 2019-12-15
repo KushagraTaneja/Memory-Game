@@ -117,6 +117,10 @@ h1 {
     cursor: pointer;
 }
 
+#minutes {
+    margin-left: 20px;
+}
+
 
 @keyframes cardOpened {
     0% {
