@@ -117,6 +117,18 @@ h1 {
     cursor: pointer;
 }
 
+.winning-model {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background: #ffffff url('../img/geometry2.png');
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
 #minutes {
     margin-left: 20px;
 }

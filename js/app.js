@@ -41,6 +41,7 @@ function shuffle(array) {
  allCards.forEach(function(element){
      element.addEventListener('click',function(e){
         let openedCard = document.getElementsByClassName("open");
+        let matchedCard = document.getElementsByClassName("match");
         let clickedElement = e.target;
         if (openedCard.length==1 || openedCard.length==0) {
             if(clickedElement.classList.contains("card")){
@@ -50,6 +51,9 @@ function shuffle(array) {
         moves();
         match();   
        } 
+       if (matchedCard.length==2) {
+           gameEnds();
+       } 
      });
     });
 
@@ -58,12 +62,12 @@ function shuffle(array) {
         noOfMoves += 1;           
         document.getElementById("moves").innerText = noOfMoves;
         let starElements = document.querySelectorAll('.stars li i');
-        if (noOfMoves == 8) {
+        if (noOfMoves == 13) {
                 starElements[0].className = "fa fa-star";
                 starElements[1].className = "fa fa-star";
                 starElements[2].className = "fa";            
         }
-        else if (noOfMoves == 14) {
+        else if (noOfMoves == 18) {
             starElements[0].className = "fa fa-star";
             starElements[1].className = "fa";
             starElements[2].className = "fa";
@@ -85,16 +89,22 @@ function shuffle(array) {
             }
         }   
 
-
-        // function timer(){ 
-
         let minutesLabel = document.getElementById("minutes");
         let secondsLabel = document.getElementById("seconds");
         let totalSeconds = 0;
-        // let stopTimer = setInterval(setTime, 1000);
 
         function startTimer(){
             setInterval(setTime, 1000);
+        }
+        
+        function stopTimer(){
+            clearInterval(stopTimer);
+        }
+
+        function resetTimer(){
+            stopTimer();
+            minutesLabel = 0;
+            secondsLabel = 0;
         }
 
         function setTime(){
@@ -113,8 +123,10 @@ function shuffle(array) {
             }
         }
 
-        function stoppingTimer(){
-            clearInterval(stopTimer);
-        }
-    
+    function gameEnds(){
+        let winningModel = document.getElementById("win-model");
+        winningModel.style.display = "block";     
+        document.getElementById("total-moves").innerText = parseInt(document.getElementById("moves").innerText, 10);
+        document.getElementById("final-stars").innerText = document.querySelectorAll('.stars li').length;
+    }
     
