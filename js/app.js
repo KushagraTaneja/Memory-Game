@@ -3,6 +3,9 @@ let allCards = document.querySelectorAll('.card');
 let playAgain = document.getElementById("play-button");
 let startGame = document.getElementById("start-game");
 let restartButton = document.getElementById("restart-button")
+let deck = document.querySelector('.deck');
+
+
 
 
 startGame.onclick = function() {
@@ -21,13 +24,13 @@ playAgain.addEventListener('click',function(e){
 
 })
 
-allCards.forEach(function(element){
-     element.addEventListener('click',function(e){
+deck.addEventListener('click',function(e){
         let openedCard = document.getElementsByClassName("open");
         let matchedCard = document.getElementsByClassName("match");
         let clickedElement = e.target;
+
         if (openedCard.length==1 || openedCard.length==0) {
-            if(clickedElement.classList.contains("card")){
+            if((clickedElement.classList.contains("card")) && (!(clickedElement.classList.contains("match")))){
                 clickedElement.classList.add('open');
         }}       
        if (openedCard.length==2) {
@@ -39,7 +42,6 @@ allCards.forEach(function(element){
            gameEnds();
        } 
      });
-    });
 
 function moves() {
         let noOfMoves = parseInt(document.getElementById("moves").innerText, 10);
