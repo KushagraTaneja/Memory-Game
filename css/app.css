@@ -117,6 +117,16 @@ h1 {
     cursor: pointer;
 }
 
+.score-panel .restart .button {
+    float: left;
+}
+
+#restart-button {
+    display: none;
+    float: left;
+    cursor: pointer;
+}
+
 .winning-model {
     display: none;
     position: fixed;
